@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import store from './app/store'
+import Button from 'react-bootstrap/Button'
 import './App.css'
 
 const gameStatus = board => {
@@ -12,7 +13,7 @@ const gameStatus = board => {
                          [2, 5, 8],
                          [0, 4, 8],
                          [2, 4, 6]]
-  if (board.every(x => x)) return {win: false}
+  if (board.forEach(x => x)) return {win: false}
   return winConditions.reduce((win, c) => {
     if (!board[c[0]]) return win
     if (board[c[0]] === board[c[1]] &&
@@ -74,20 +75,23 @@ const Gameover = ({board}) => {
 
 const RestartButton = props => {
   return (
-    <button
+    <Button
       onClick={() =>
         store.dispatch({
           type: 'RESTART_GAME'
         })
       }
-    >RESTART GAME</button>
+    >RESTART GAME</Button>
   )
 }
 
 const App = props => {
+  let player = store.getState().currentPlayer
+
   return (
     <div>
       <h1>tictactoe</h1>
+      <h2>Make Your Move Player {player}</h2>
       <Board board={store.getState().boardReducer} />
       <Gameover board={store.getState().boardReducer}/>
     </div>
