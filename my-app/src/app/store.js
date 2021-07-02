@@ -1,11 +1,8 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { createStore, combineReducers } from 'redux';
 import boardReducer from '../reducers/boardReducer';
-import playerReducer from '../reducers/playerReducer'
+import currentPlayer from '../reducers/playerReducer';
 
-export const store = configureStore({
-    reducer: {
-      board: boardReducer,
-      player: playerReducer,
-    }
-  });
+const game = combineReducers({boardReducer, currentPlayer})
+const store = createStore(game);
   
+export default store;
