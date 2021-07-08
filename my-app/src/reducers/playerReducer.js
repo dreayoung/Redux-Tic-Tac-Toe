@@ -1,4 +1,4 @@
- const currentPlayer = (state = 'X', action) => {
+ const playerReducer = (state = 'X', action) => {
     switch (action.type) {
       case 'SWITCH_PLAYER':
         return state === 'X' ? 'O' : 'X'
@@ -7,5 +7,5 @@
     }
   }
 
-  export default currentPlayer
+  export default playerReducer
   
